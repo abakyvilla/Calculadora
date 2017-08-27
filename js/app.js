@@ -9,7 +9,7 @@ var operacion = '';
 // 1
 document.getElementById('1').addEventListener('click', function () {
   arreglo1.push(1);
-  document.getElementById('display').innerHTML = arreglo1.join('');
+  document.getElementById('display').innerHTML = arreglo1.join(''); // JOIN() elimina la coma al momento de mostrar el array
 })
 
 // 2
@@ -62,8 +62,10 @@ document.getElementById('9').addEventListener('click', function () {
 
 // 0
 document.getElementById('0').addEventListener('click', function () {
-  arreglo1.push(0);
-  document.getElementById('display').innerHTML = arreglo1.join('');
+  if (document.getElementById('display').innerHTML !== '0') {
+    arreglo1.push(0);
+    document.getElementById('display').innerHTML = arreglo1.join('');
+  }
 })
 
 // .
@@ -72,13 +74,25 @@ document.getElementById('punto').addEventListener('click', function () {
   document.getElementById('display').innerHTML = arreglo1.join('');
 })
 
+// -/+
+document.getElementById('sign').addEventListener('click', function () {
+  if (arreglo1[0] == '-') {
+    arreglo1.shift();
+    document.getElementById('display').innerHTML = arreglo1.join('');;
+  } else {
+    arreglo1.unshift('-');
+    document.getElementById('display').innerHTML = arreglo1.join('');
+  }
+
+})
+
 
 // DETERMINAR LA OPERACION MATEMATICA Y ALMACENAR UNA COPIA DEL ARREGLO EN LA VARIABLE CANT1
 
 // SUMA
 document.getElementById('mas').addEventListener('click', function() {
   operacion = 'suma';
-  cant1 = parseInt(document.getElementById('display').innerHTML); //Mediante Funcion parseInt convertir el string a int
+  cant1 = parseFloat(document.getElementById('display').innerHTML); //Mediante Funcion parseFloat convertir el string a int
   document.getElementById('display').innerHTML = '0';
   arreglo1 = [];
   console.log('Operacion: ', operacion, 'Primer Valor: ', cant1, 'Nuevo Valor del Arreglo: ', arreglo1);
@@ -87,7 +101,7 @@ document.getElementById('mas').addEventListener('click', function() {
 // RESTA
 document.getElementById('menos').addEventListener('click', function() {
   operacion = 'resta';
-  cant1 = parseInt(document.getElementById('display').innerHTML); //Mediante Funcion parseInt convertir el string a int
+  cant1 = parseFloat(document.getElementById('display').innerHTML); //Mediante Funcion parseFloat convertir el string a int
   document.getElementById('display').innerHTML = '0';
   arreglo1 = [];
   console.log('Operacion: ', operacion, 'Primer Valor: ', cant1, 'Nuevo Valor del Arreglo: ', arreglo1);
@@ -96,7 +110,7 @@ document.getElementById('menos').addEventListener('click', function() {
 // MULTIPLICACION
 document.getElementById('por').addEventListener('click', function() {
   operacion = 'multiplicacion';
-  cant1 = parseInt(document.getElementById('display').innerHTML); //Mediante Funcion parseInt convertir el string a int
+  cant1 = parseFloat(document.getElementById('display').innerHTML); //Mediante Funcion parseFloat convertir el string a int
   document.getElementById('display').innerHTML = '0';
   arreglo1 = [];
   console.log('Operacion: ', operacion, 'Primer Valor: ', cant1, 'Nuevo Valor del Arreglo: ', arreglo1);
@@ -105,15 +119,24 @@ document.getElementById('por').addEventListener('click', function() {
 // DIVISION
 document.getElementById('dividido').addEventListener('click', function() {
   operacion = 'division';
-  cant1 = parseInt(document.getElementById('display').innerHTML); //Mediante Funcion parseInt convertir el string a int
+  cant1 = parseFloat(document.getElementById('display').innerHTML); //Mediante Funcion parseFloat convertir el string a int
   document.getElementById('display').innerHTML = '0';
   arreglo1 = [];
   console.log('Operacion: ', operacion, 'Primer Valor: ', cant1, 'Nuevo Valor del Arreglo: ', arreglo1);
 })
 
+// FUNCIONALIDAD DEL ON/C
+document.getElementById('on').addEventListener('click', function() {
+  arreglo1 = [];
+  cant1 = '';
+  cant2 = '';
+  operacion = '';
+  document.getElementById('display').innerHTML = '0';
+})
+
 // FUNCIONALIDAD DEL =
 document.getElementById('igual').addEventListener('click', function() {
-  cant2 = parseInt(document.getElementById('display').innerHTML)
+  cant2 = parseFloat(document.getElementById('display').innerHTML)
   console.log('cantidad1:', cant1, 'cantidad2:', cant2);
   switch (operacion) {
     case 'suma':
